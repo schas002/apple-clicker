@@ -29,3 +29,8 @@ var State = {
     // none yet
   }
 };
+
+document.getElementById("clickme").addEventListener("click", function() {
+  var apple = State["resources"]["apple"];
+  apple["count"]++; apple["totalThisRestart"]++; apple["total"]++;
+});
