@@ -30,7 +30,24 @@ var State = {
   }
 };
 
+function addResource(resource, amount) {
+  var resObject = State["resources"][resource];
+  resObject["count"]++; resObject["totalThisRestart"]++; resObject["total"]++;
+}
+
+function displayNumbers() {
+  for(var key in State["resources"]) {
+    for(var key2 in State["resources"][key]) {
+      var id = key + "_" + key2;
+      if(document.getElementById(id)) {
+        document.getElementById(id).innerHTML = State["resources"][key][key2];
+      }
+    }
+  }
+}
+
 document.getElementById("clickme").addEventListener("click", function() {
-  var apple = State["resources"]["apple"];
-  apple["count"]++; apple["totalThisRestart"]++; apple["total"]++;
+  addResource("apple", 1);
+  State["clickables"]["clickme"]++;
+  displayNumbers();
 });
